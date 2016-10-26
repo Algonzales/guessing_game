@@ -15,12 +15,12 @@ using namespace std;
 int main()
 {
     ifstream inputFile("scores.txt");
-    string name = "name";
+    string name = "name"; //setup the strings for reading the file
     string name1 = "unknown";
     string name2 = "unknown";
     string name3 = "unknown";
     int playerScore = 1;
-    int score;
+    int score; //put scores into variables to read them from the file
     int score1 = 99;
     int score2 = 99;
     int score3 = 99;
@@ -51,7 +51,7 @@ int main()
         counter++;
     }
 
-    inputFile.close();
+    inputFile.close(); //closes the file
 
 
     srand(time(0));
@@ -59,14 +59,14 @@ int main()
     cout << "   Enter your name: ";
     cin >> name;
     cout << "   Guess a number between 1 and 100 \n";
-    cout << number;
+    cout << "   " << number;
     int guess = -1;
-    while (guess != number)
+    while (guess != number) //starts the guessing game loop
     {
         // Prompt the user to guess the number
         cout << "\n   Enter your guess: ";
         cin >> guess;
-        while (cin.fail() || guess < 0 || guess > 100)
+        while (cin.fail() || guess < 0 || guess > 100) //this is used if player puts in things other than numbers
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -89,9 +89,13 @@ int main()
             cout << "   Your guess is too low" << endl;
             playerScore ++;
         }
+        if (guess == 0)
+        {
+            exit(0);
+        }
     } // End of loop
 
-    if (playerScore <= score1)
+    if (playerScore <= score1) //overwrites old scores if player did better than them
     {
         name3 = name2;
         score3 = score2;
@@ -112,15 +116,13 @@ int main()
         name3 = name;
         score3 = playerScore;
     }
-    ofstream outputFile ("scores.txt");
+    ofstream outputFile ("scores.txt"); //outputs to scores.txt to overwrite old scores with new scores
     outputFile << name1 << " " << score1 << endl;
     outputFile << name2 << " " << score2 << endl;
     outputFile << name3 << " " << score3 << endl;
-    outputFile.close();
+    outputFile.close(); //closes the file
 
-    cout << ("\n");
-
-    cout << " Here are the new top players \n";
+    cout << "\n   Here are the new top players \n"; //opens scores.txt to show new scores to the player
     counter = 1;
     ifstream inputFile2 ("scores.txt");
     while (inputFile2)
@@ -147,7 +149,7 @@ int main()
         counter++;
     }
 
-    inputFile2.close();
+    inputFile2.close(); //closes the file
 
 
     return 0;
