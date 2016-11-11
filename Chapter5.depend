@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1477520537 source:c:\users\gonzo\desktop\projects for csc 150\chapter5\chapter5.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<ctime>
+	<limits>
+
